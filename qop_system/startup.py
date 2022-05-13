@@ -15,7 +15,6 @@ def close():
     IRoot.destroy()
     IRoot.quit()
 
-#IRoot.iconbitmap("myIcon.ico")
 IRoot.title("Quadratic Odd Partitions")
 IRoot.protocol('WM_DELETE_WINDOW', close)
 x = IRoot.winfo_screenwidth() // 2 - const.width // 2

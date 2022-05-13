@@ -86,7 +86,7 @@ class Tab1Instance:
         button.grid(row=7, column=0, sticky=W, padx=(4, 0))       
         
         #==========================================================
-        text = Text(p1, width=64, height=4)
+        text = Text(p1, width=60, height=4)
         text.grid(row=8, column=0, padx=(4, 0), pady=(12, 0), columnspan = (int)(const.width/2))
         text.insert('1.0', "Достаточно высчитать два значения, чтобы получить третье.\n"+
                     "Вывод программ должен быть следующий:\n" +
@@ -99,7 +99,7 @@ class Tab1Instance:
         label = Label(p2, text="Результаты:")
         label.grid(row=0, column=0, sticky=W)
         
-        self.textOut = Text(p2, width=64, height=35)
+        self.textOut = Text(p2, width=60, height=35)
         self.textOut.grid(row=1, column=0)
          
         scroll = ttk.Scrollbar(p2, orient=VERTICAL, command=self.textOut.yview)
@@ -110,8 +110,8 @@ class Tab1Instance:
         panel1 = Frame(frame, width=const.width/2, height=const.height)
         panel1.place(x = 0, y = 0)
         
-        panel2 = Frame(frame, width=472, height=const.height)
-        panel2.place(x = const.width - 480, y = 0)
+        panel2 = Frame(frame, width=const.width/2, height=const.height)
+        panel2.place(x = const.width/2 + 24, y = 0)
         return panel1, panel2
 
     def Tab1Init(self, frame):

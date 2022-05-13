@@ -14,8 +14,6 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-#matplotlib.use('TkAgg')#todo???
-
 class Tab2Instance: 
     def SaveFile(self):
         if self.comboDraw.current():

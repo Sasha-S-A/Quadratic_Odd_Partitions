@@ -14,8 +14,6 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
-#matplotlib.use('TkAgg')#todo???
-
 class Tab3Instance: 
     def SaveFile(self):
         if self.comboDraw.current():
@@ -43,10 +41,7 @@ class Tab3Instance:
             lambdaVal = sqrt(n - (1/24))
             return exp((pi * lambdaVal) / sqrt(6)) / (4 * pow(lambdaVal, 3/2) * pow(24, 1/4))
         elif typeDraw == 'qop(n)':
-            lambdaVal = sqrt(n - (1/24))
-            r4 = exp((pi * lambdaVal) / sqrt(6)) / (4 * pow(lambdaVal, 3/2) * pow(24, 1/4))
-            rank = exp(pi * sqrt(n/6)) / (4 * pow(24 * n * n * n, 1/4))
-            return r4 - rank
+            return 0
         elif typeDraw == 'rank(n)':
             return exp(pi * sqrt(n/6)) / (4 * pow(24 * n * n * n, 1/4))
  
@@ -244,7 +239,7 @@ class Tab3Instance:
         else:
             self.UpdateTable()
             self.panel3.place_forget()
-            self.panel2.place(x = const.width/2 - 56, y = 0)
+            self.panel2.place(x = const.width/2 - 32, y = 0)
 
     def AutoScale(self):
         #==========================================================
@@ -383,20 +378,19 @@ class Tab3Instance:
         button2.grid(row=12, column=0, sticky=W+S, padx=(80, 0)) 
         
         #==========================================================
-        self.text = Text(p1, width=60, height=4)
+        self.text = Text(p1, width=58, height=4)
         self.text.grid(row=13, column=0, padx=(4, 0), pady=(12, 0), columnspan = (int)(const.width/2))
         self.text.insert('1.0', "Получившиеся значения для уравнения вида:\n"+
                     "y(n) = a * exp(b * sqrt(n))\n" +
                     "a = ?\nb = ?")
         self.text.config(state=DISABLED)
         
-        text2 = Text(p1, width=60, height=5)
+        text2 = Text(p1, width=58, height=4)
         text2.grid(row=14, column=0, padx=(4, 0), pady=(12, 0), columnspan = (int)(const.width/2))
         text2.insert('1.0', "Для сравнения с известной ипользуются следующий формулы:\n"+
                     "Для rank(n): exp(π*√(n/6)) / (4*∜(24 * n³))\n" +
                     "Для r4(n): exp((π*λ(n))/√6) / (4*√(λ³(n))*∜24)\n" +
-                    "λ(n) = √(n - 1/24)\n" +
-                    "Для qop(n): r4(n) - rank(n)")
+                    "λ(n) = √(n - 1/24)")
         text2.config(state=DISABLED)        
 
     def InitPanel2(self, p2):
@@ -415,16 +409,16 @@ class Tab3Instance:
         self.tree.column(0, minwidth=56, width=56, stretch=NO, anchor=CENTER)
         self.tree.heading(0, text='n')
         
-        self.tree.column(1, minwidth=144, width=144, stretch=NO, anchor=CENTER)
+        self.tree.column(1, minwidth=128, width=128, stretch=NO, anchor=CENTER)
         self.tree.heading(1, text='r4(n) текущ.')
  
-        self.tree.column(2, minwidth=144, width=144, stretch=NO, anchor=CENTER)
+        self.tree.column(2, minwidth=128, width=128, stretch=NO, anchor=CENTER)
         self.tree.heading(2, text='r4(n) аппрокс.')       
 
-        self.tree.column(3, minwidth=144, width=144, stretch=NO, anchor=CENTER)
+        self.tree.column(3, minwidth=128, width=128, stretch=NO, anchor=CENTER)
         self.tree.heading(3, text='Абсол. погр.')        
 
-        self.tree.column(4, minwidth=72, width=72, stretch=NO, anchor=CENTER)
+        self.tree.column(4, minwidth=96, width=96, stretch=NO, anchor=CENTER)
         self.tree.heading(4, text='Относ. погр.')  
 
         scrollbar = ttk.Scrollbar(p2, orient=VERTICAL, command=self.tree.yview)
@@ -454,7 +448,7 @@ class Tab3Instance:
         panel1.place(x = 0, y = 0)
         
         self.panel2 = Frame(frame, width=const.width/2, height=const.height)
-        self.panel2.place(x = const.width/2 - 56, y = 0)
+        self.panel2.place(x = const.width/2 - 32, y = 0)
         
         self.panel3 = Frame(frame, width=const.width/2, height=const.height)
         self.panel3.place(x = const.width/2 - 40, y = 0)
