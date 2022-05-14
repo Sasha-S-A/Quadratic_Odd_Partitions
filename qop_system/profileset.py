@@ -91,8 +91,8 @@ class ProfileSet:
                         return 0
                     
                     self.R4Data.append({'Number' : int(items[0]), 'Time' : float(items[1]), 'Value' : int(items[2])})
-                    self.QOPData.append({'Number' : int(items[0]), 'Time' : float(items[1]), 'Value' : int(items[2])})
-                    self.RANKData.append({'Number' : int(items[0]), 'Time' : float(items[1]), 'Value' : int(items[2])})
+                    self.QOPData.append({'Number' : int(items[0]), 'Time' : float(items[1]), 'Value' : int(items[3])})
+                    self.RANKData.append({'Number' : int(items[0]), 'Time' : float(items[1]), 'Value' : int(items[4])})
             else:
                 self.ReadData(f, typeLoad)
                 if len(self.R4Data) and len(self.QOPData) != "":

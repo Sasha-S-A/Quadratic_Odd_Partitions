@@ -14,6 +14,8 @@ import matplotlib.pyplot as plt
 from matplotlib.figure import Figure
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
+matplotlib.use('Agg')
+
 class Tab2Instance: 
     def SaveFile(self):
         if self.comboDraw.current():
@@ -63,10 +65,18 @@ class Tab2Instance:
         self.IProfile.GraphsValues[5] = 10
         
         #==========================================================
+        step1X = self.maxX2 // 10
+        if step1X < 1:
+            step1X = 1
+        
+        step1Y = self.maxY2 // 10
+        if step1Y < 1:
+            step1Y = 1
+        
         self.ax.set_xlim([1, self.maxX2])
         self.ax.set_ylim([0, self.maxY2])
-        self.ax.xaxis.set_ticks(np.arange(1, self.maxX2 + 5, ceil((self.maxX2 - 1) / 10)))
-        self.ax.yaxis.set_ticks(np.arange(0, self.maxY2 + 5, ceil(self.maxY2 / 10)))
+        self.ax.xaxis.set_ticks(np.arange(1, self.maxX2 + 2, step1X))
+        self.ax.yaxis.set_ticks(np.arange(0, self.maxY2 + 2, step1Y))
         self.canvas.draw()
     
     def UpdateTable(self):
@@ -192,7 +202,7 @@ class Tab2Instance:
            
         #==========================================================
         lim1X = int(self.tbox1.get())
-        lim2X = int(self.tbox1b.get())
+        lim2X = int(self.tbox1b.get()) + 1
         lim3 = int(self.tbox1c.get())
         if lim3 < 1:
             lim3 = 1
@@ -202,7 +212,7 @@ class Tab2Instance:
             step1X = 1
         
         lim1Y = int(self.tbox2.get())
-        lim2Y = int(self.tbox2b.get())
+        lim2Y = int(self.tbox2b.get()) + 1
         lim4 = int(self.tbox2c.get())
         if lim4 < 1:
             lim4 = 1   
@@ -210,19 +220,13 @@ class Tab2Instance:
         step1Y = (lim2Y - lim1Y) // lim4
         if step1Y < 1:
             step1Y = 1
-            
-        if lim1X == lim2X:
-            lim2X = lim2X + 1
-            
-        if lim1Y == lim2Y:
-            lim2Y = lim2Y + 1
-           
+
         #==========================================================
         self.IProfile.GraphsValues[0] = lim1X
-        self.IProfile.GraphsValues[1] = lim2X
+        self.IProfile.GraphsValues[1] = lim2X - 1
         self.IProfile.GraphsValues[2] = lim3
         self.IProfile.GraphsValues[3] = lim1Y
-        self.IProfile.GraphsValues[4] = lim2Y
+        self.IProfile.GraphsValues[4] = lim2Y - 1
         self.IProfile.GraphsValues[5] = lim4
            
         #==========================================================

@@ -1,6 +1,7 @@
 import const
 from tkinter import *
 from tkinter import filedialog
+from tkinter import messagebox
 from tkinter import ttk
 
 class Tab1Instance: 
@@ -24,10 +25,13 @@ class Tab1Instance:
         self.textOut.config(state=NORMAL)
         self.textOut.delete('1.0', END)
         if typeLoad == const.FOR_R4:
+            self.labelRes.config(text = "Результаты r4(n):")
             self.textOut.insert('1.0', self.IProfile.DataPrint(self.IProfile.R4Data))
         elif typeLoad == const.FOR_QOP:
+            self.labelRes.config(text = "Результаты qop(n):")
             self.textOut.insert('1.0', self.IProfile.DataPrint(self.IProfile.QOPData))
         elif typeLoad == const.FOR_RANK:
+            self.labelRes.config(text = "Результаты rank(n):")
             self.textOut.insert('1.0', self.IProfile.DataPrint(self.IProfile.RANKData))
             
         self.textOut.see("end")
@@ -91,13 +95,13 @@ class Tab1Instance:
         text.insert('1.0', "Достаточно высчитать два значения, чтобы получить третье.\n"+
                     "Вывод программ должен быть следующий:\n" +
                     "Для одиночной: [число] [время] [значение]\n" +
-                    "Для общей: [число] [время] [r4(n)] [qop(n)] [rank(n)].")
+                    "Для общей: [число] [время] [r4(n)] [qop(n)] [rank(n)]")
         text.config(state=DISABLED)
         self.UpdateResults()
     
     def InitPanel2(self, p2):
-        label = Label(p2, text="Результаты:")
-        label.grid(row=0, column=0, sticky=W)
+        self.labelRes = Label(p2, text="Результаты:")
+        self.labelRes.grid(row=0, column=0, sticky=W)
         
         self.textOut = Text(p2, width=60, height=35)
         self.textOut.grid(row=1, column=0)
